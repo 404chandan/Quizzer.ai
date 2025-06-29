@@ -1,9 +1,12 @@
-const apiUrl = 'https://quizzer-ai.onrender.com';
+const apiUrl = 'https://quizzer-ai.onrender.com/api/quiz';
 
 // ------------------------
 // Handle Quiz Generation Form
 // ------------------------
 const form = document.getElementById('quizForm');
+const loadingMessage = document.getElementById('loadingMessage');
+const generateBtn = document.getElementById('generateBtn');
+
 if (form) {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -15,6 +18,13 @@ if (form) {
     if (!topic || !numQuestions || !difficulty) {
       alert('Please fill all fields');
       return;
+    }
+
+    // Show loading
+    if (loadingMessage) loadingMessage.style.display = 'block';
+    if (generateBtn) {
+      generateBtn.disabled = true;
+      generateBtn.textContent = 'Generating...';
     }
 
     try {
@@ -35,6 +45,13 @@ if (form) {
     } catch (err) {
       alert(`Error generating quiz: ${err.message}`);
       console.error(err);
+    } finally {
+      // Hide loading
+      if (loadingMessage) loadingMessage.style.display = 'none';
+      if (generateBtn) {
+        generateBtn.disabled = false;
+        generateBtn.textContent = 'Generate Quiz';
+      }
     }
   });
 }
@@ -98,7 +115,7 @@ if (quizContainer) {
 }
 
 // ------------------------
-// Load Quiz History with Delete and Reattempt
+// Load Quiz History
 // ------------------------
 const historyContainer = document.getElementById('history');
 if (historyContainer) {
@@ -149,7 +166,7 @@ if (historyContainer) {
 }
 
 // ------------------------
-// Reattempt Quiz Function
+// Reattempt Quiz
 // ------------------------
 function reattemptQuiz(index) {
   const recentQuizzes = JSON.parse(localStorage.getItem('recentQuizzes'));
@@ -160,7 +177,7 @@ function reattemptQuiz(index) {
 }
 
 // ------------------------
-// Delete Quiz Function
+// Delete Quiz
 // ------------------------
 function deleteQuiz(id, button) {
   const confirmDelete = confirm('Are you sure you want to delete this quiz?');
@@ -173,7 +190,6 @@ function deleteQuiz(id, button) {
       if (!res.ok) {
         throw new Error('Failed to delete');
       }
-      // Remove from page
       const block = button.closest('.history-block');
       block.remove();
       alert('Quiz deleted successfully');

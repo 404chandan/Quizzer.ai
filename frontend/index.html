@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quizzer.ai - Generate Quiz</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -11,26 +12,32 @@
     <h2>Generate Your Quiz</h2>
 
     <form id="quizForm">
-      <label>Topic:</label>
-      <input type="text" id="topic" required placeholder="e.g. JavaScript, History">
+      <label for="topic">Topic:</label>
+      <input type="text" id="topic" name="topic" required placeholder="e.g. JavaScript, History">
 
-      <label>Number of Questions:</label>
-      <input type="number" id="numQuestions" min="1" max="20" required>
+      <label for="numQuestions">Number of Questions:</label>
+      <input type="number" id="numQuestions" name="numQuestions" min="1" max="20" required>
 
-      <label>Difficulty:</label>
-      <select id="difficulty" required>
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty" name="difficulty" required>
         <option value="">--Select--</option>
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
 
-      <button type="submit">Generate Quiz</button>
+      <button type="submit" id="generateBtn">🚀 Generate Quiz</button>
     </form>
-    <a href="history.html">📜 View History</a>
 
-    <!-- <h2>📜 Quiz History</h2>
-    <div id="history"></div> -->
+    <!-- Loading message -->
+    <p id="loadingMessage" style="display:none; color:#007bff; font-weight:bold; margin-top: 10px;">
+      ⏳ Please wait... Quiz is being generated.
+    </p>
+
+    <!-- Navigation -->
+    <div class="navigation">
+      <a href="history.html">📜 View Quiz History</a>
+    </div>
   </div>
 
   <script src="js/main.js"></script>
