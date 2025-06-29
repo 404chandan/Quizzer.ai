@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quizzer.ai - Generate Quiz</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Quizzer.ai</h1>
+    <h2>Generate Your Quiz</h2>
+
+    <form id="quizForm">
+      <label>Topic:</label>
+      <input type="text" id="topic" required placeholder="e.g. JavaScript, History">
+
+      <label>Number of Questions:</label>
+      <input type="number" id="numQuestions" min="1" max="20" required>
+
+      <label>Difficulty:</label>
+      <select id="difficulty" required>
+        <option value="">--Select--</option>
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <button type="submit">Generate Quiz</button>
+    </form>
+    <a href="history.html">📜 View History</a>
+
+    <!-- <h2>📜 Quiz History</h2>
+    <div id="history"></div> -->
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
