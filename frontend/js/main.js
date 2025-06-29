@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:5000/api/quiz';
+const apiUrl = 'https://quizzer-ai.onrender.com';
 
 // ------------------------
 // Handle Quiz Generation Form
